@@ -22,6 +22,10 @@ jobs:
       - name: 🛠️ Build backend image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-fullstack-backend:latest ./backend
 
+      - name: Generate .env file for frontend
+        run: |
+          echo "NEXT_PUBLIC_API_URL=http://localhost:3001" > frontend/.env.local
+
       - name: 🛠️ Build frontend image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-fullstack-frontend:latest ./frontend
 
