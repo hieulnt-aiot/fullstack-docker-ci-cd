@@ -2,7 +2,7 @@ name: Build, Push, Pull & Deploy (Self-hosted)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: 🧾 Checkout code
         uses: actions/checkout@v3
+
+      - name: Generate .env file for backend
+        run: |
+          echo "DATABASE_URL=mysql://root:admin123@db:3306/fullstack-docker-app" > backend/.env
+          echo "REDIS_HOST=redis" >> backend/.env
+          echo "REDIS_PORT=6379" >> backend/.env
+          echo "PORT=3001" >> backend/.env
 
       - name: 🛠️ Build backend image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-fullstack-backend:latest ./backend

@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "fullstack-docker-app-demo",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus9.actions.githubusercontent.com/WamZnOYs2nHeAEXTjsrMD5Uf4629M6CFE6SvlmGWurcNE0O6wf/",
+  "gitHubUrl": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

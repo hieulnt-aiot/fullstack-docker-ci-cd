@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "hieulnt-aiot/fullstack-docker-ci-cd",
+  "pipelineDirectory": "fullstack-docker-ci-cd",
+  "workspaceDirectory": "fullstack-docker-ci-cd/fullstack-docker-ci-cd",
+  "repositories": {
+    "hieulnt-aiot/fullstack-docker-ci-cd": {
+      "repositoryPath": "fullstack-docker-ci-cd/fullstack-docker-ci-cd",
+      "lastRunOn": "06/24/2025 16:08:36 +07:00"
+    }
+  },
+  "lastRunOn": "06/24/2025 16:12:26 +07:00"
+}
