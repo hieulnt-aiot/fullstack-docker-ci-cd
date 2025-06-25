@@ -1,0 +1,3769 @@
+[2025-06-25 07:34:47Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Credentials': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Runner': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.runner'
+[2025-06-25 07:34:47Z INFO Worker] Version: 2.325.0
+[2025-06-25 07:34:47Z INFO Worker] Commit: 71ed7cd46223bd5d61633445946813012b502d54
+[2025-06-25 07:34:47Z INFO Worker] Culture: en-US
+[2025-06-25 07:34:47Z INFO Worker] UI Culture: en-US
+[2025-06-25 07:34:47Z INFO Worker] Waiting to receive the job message from the channel.
+[2025-06-25 07:34:47Z INFO ProcessChannel] Receiving message of length 24241, with hash '53315301b6c32f31f37e49fab8d4f104e92e2dbc06ffa18a24a4bd04963a7c9c'
+[2025-06-25 07:34:47Z INFO Worker] Message received.
+[2025-06-25 07:34:47Z INFO Worker] Job message:
+ {
+  "fileTable": [
+    ".github/workflows/deploy.yml"
+  ],
+  "mask": [
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    }
+  ],
+  "steps": [
+    {
+      "type": "action",
+      "reference": {
+        "type": "repository",
+        "name": "actions/checkout",
+        "ref": "v3",
+        "repositoryType": "GitHub"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 12,
+        "col": 15,
+        "lit": "🧾 Checkout code"
+      },
+      "contextName": "__actions_checkout",
+      "condition": "success()",
+      "id": "188e8709-303c-42a8-ab5b-64ae35a88e6a",
+      "name": "__actions_checkout"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 15,
+        "col": 15,
+        "lit": "Generate .env file for backend"
+      },
+      "contextName": "__run",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 16,
+              "col": 14,
+              "lit": "echo \"DATABASE_URL=***db:3306/fullstack-docker-app\" > backend/.env\necho \"REDIS_HOST=redis\" >> backend/.env\necho \"REDIS_PORT=6379\" >> backend/.env\necho \"PORT=3001\" >> backend/.env\n"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "71137e13-6669-49cc-82c5-923a39f5f840",
+      "name": "__run"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 22,
+        "col": 15,
+        "lit": "🛠️ Build backend image"
+      },
+      "contextName": "__run_2",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 23,
+              "col": 14,
+              "expr": "format('docker build -t {0}/my-fullstack-backend:latest ./backend', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "1af48c5d-9ded-4f5b-bdad-caa5bed53539",
+      "name": "__run_2"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 25,
+        "col": 15,
+        "lit": "Generate .env file for frontend"
+      },
+      "contextName": "__run_3",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 26,
+              "col": 14,
+              "lit": "echo \"NEXT_PUBLIC_API_URL=http://localhost:3001\" > frontend/.env\n"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "bee815ea-7821-4314-b8a0-76355115e8e9",
+      "name": "__run_3"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 29,
+        "col": 15,
+        "lit": "🛠️ Build frontend image"
+      },
+      "contextName": "__run_4",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 30,
+              "col": 14,
+              "expr": "format('docker build -t {0}/my-fullstack-frontend:latest ./frontend', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "29dd4f3a-e18a-4ce8-922b-e4f26758e748",
+      "name": "__run_4"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 32,
+        "col": 15,
+        "lit": "🔐 Login to Docker Hub"
+      },
+      "contextName": "__run_5",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 33,
+              "col": 14,
+              "expr": "format('echo \"{0}\" | docker login -u {1} --password-stdin', secrets.DOCKERHUB_TOKEN, secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "a1e2c76c-1abc-406a-b888-139b4bcff655",
+      "name": "__run_5"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 35,
+        "col": 15,
+        "lit": "⬆️ Push backend image"
+      },
+      "contextName": "__run_6",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 36,
+              "col": 14,
+              "expr": "format('docker push {0}/my-fullstack-backend:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "1ee8b697-b88d-447d-b4c8-71a311150f73",
+      "name": "__run_6"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 38,
+        "col": 15,
+        "lit": "⬆️ Push frontend image"
+      },
+      "contextName": "__run_7",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 39,
+              "col": 14,
+              "expr": "format('docker push {0}/my-fullstack-frontend:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "f425f6f3-17e1-42ad-983e-170e2dd88280",
+      "name": "__run_7"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 41,
+        "col": 15,
+        "lit": "⬇️ Pull backend image"
+      },
+      "contextName": "__run_8",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 42,
+              "col": 14,
+              "expr": "format('docker pull {0}/my-fullstack-backend:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "4e36aea8-6ef3-4789-822a-5cf5bb2f5a75",
+      "name": "__run_8"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 44,
+        "col": 15,
+        "lit": "⬇️ Pull frontend image"
+      },
+      "contextName": "__run_9",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 45,
+              "col": 14,
+              "expr": "format('docker pull {0}/my-fullstack-frontend:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "2d6362ff-a83c-45e5-be4e-cda5fb994cb9",
+      "name": "__run_9"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 47,
+        "col": 15,
+        "lit": "🧹 Stop and remove old containers"
+      },
+      "contextName": "__run_10",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 48,
+              "col": 14,
+              "lit": "docker-compose down || true"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "3da3d64b-1dfc-4b5e-9ff1-4c316252288b",
+      "name": "__run_10"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 50,
+        "col": 15,
+        "lit": "🚀 Start new containers"
+      },
+      "contextName": "__run_11",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 51,
+              "col": 14,
+              "lit": "docker-compose up -d"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "47b50933-f467-4cae-bccb-8279686bf164",
+      "name": "__run_11"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 53,
+        "col": 15,
+        "lit": "🧼 Clean up unused images"
+      },
+      "contextName": "__run_12",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 54,
+              "col": 14,
+              "lit": "docker image prune -f"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "aa71f595-33ad-4ef2-8732-dac4074c541a",
+      "name": "__run_12"
+    }
+  ],
+  "variables": {
+    "Actions.EnableHttpRedirects": {
+      "value": "true"
+    },
+    "DOCKERHUB_TOKEN": {
+      "value": "***",
+      "isSecret": true
+    },
+    "DOCKERHUB_USERNAME": {
+      "value": "***",
+      "isSecret": true
+    },
+    "DistributedTask.AddWarningToNode12Action": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode16Action": {
+      "value": "true"
+    },
+    "DistributedTask.AllowRunnerContainerHooks": {
+      "value": "true"
+    },
+    "DistributedTask.DeprecateStepOutputCommands": {
+      "value": "true"
+    },
+    "DistributedTask.DetailUntarFailure": {
+      "value": "true"
+    },
+    "DistributedTask.EnableCompositeActions": {
+      "value": "true"
+    },
+    "DistributedTask.EnableJobServerQueueTelemetry": {
+      "value": "true"
+    },
+    "DistributedTask.EnhancedAnnotations": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode16": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode20": {
+      "value": "true"
+    },
+    "DistributedTask.LogTemplateErrorsAsDebugMessages": {
+      "value": "true"
+    },
+    "DistributedTask.MarkJobAsFailedOnWorkerCrash": {
+      "value": "true"
+    },
+    "DistributedTask.NewActionMetadata": {
+      "value": "true"
+    },
+    "DistributedTask.UploadStepSummary": {
+      "value": "true"
+    },
+    "DistributedTask.UseActionArchiveCache": {
+      "value": "true"
+    },
+    "DistributedTask.UseWhich2": {
+      "value": "true"
+    },
+    "RunService.FixEmbeddedIssues": {
+      "value": "true"
+    },
+    "actions_add_check_run_id_to_job_context": {
+      "value": "false"
+    },
+    "actions_display_helpful_actions_download_errors": {
+      "value": "true"
+    },
+    "actions_skip_retry_complete_job_upon_known_errors": {
+      "value": "true"
+    },
+    "actions_uses_cache_service_v2": {
+      "value": "true"
+    },
+    "github_token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.from_run_service": {
+      "value": "true"
+    },
+    "system.github.job": {
+      "value": "deploy"
+    },
+    "system.github.launch_endpoint": {
+      "value": "https://launch.actions.githubusercontent.com"
+    },
+    "system.github.results_endpoint": {
+      "value": "https://results-receiver.actions.githubusercontent.com/"
+    },
+    "system.github.results_upload_with_sdk": {
+      "value": "true"
+    },
+    "system.github.token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.github.token.permissions": {
+      "value": "{\"Contents\":\"read\",\"Metadata\":\"read\",\"Packages\":\"read\"}"
+    },
+    "system.orchestrationId": {
+      "value": "520dffdb-eb97-457a-87f7-cb38e5a2c5c0.deploy.__default"
+    },
+    "system.phaseDisplayName": {
+      "value": "deploy"
+    },
+    "system.runner.lowdiskspacethreshold": {
+      "value": "100"
+    },
+    "system.runnerEnvironment": {
+      "value": "self-hosted"
+    }
+  },
+  "messageType": "RunnerJobRequest",
+  "plan": {
+    "scopeIdentifier": "00000000-0000-0000-0000-000000000000",
+    "planType": "actions",
+    "version": 0,
+    "planId": "520dffdb-eb97-457a-87f7-cb38e5a2c5c0",
+    "planGroup": null,
+    "artifactUri": null,
+    "artifactLocation": null,
+    "definition": null,
+    "owner": null
+  },
+  "timeline": {
+    "id": "520dffdb-eb97-457a-87f7-cb38e5a2c5c0",
+    "changeId": 0,
+    "location": null
+  },
+  "jobId": "d774c351-203f-5aa9-b59b-18fddae9fe7c",
+  "jobDisplayName": "deploy",
+  "jobName": "__default",
+  "requestId": 0,
+  "lockedUntil": "0001-01-01T00:00:00",
+  "resources": {
+    "endpoints": [
+      {
+        "data": {
+          "ServerId": "",
+          "ServerName": "",
+          "CacheServerUrl": "https://artifactcache.actions.githubusercontent.com/WamZnOYs2nHeAEXTjsrMD5Uf4629M6CFE6SvlmGWurcNE0O6wf/",
+          "FeedStreamUrl": "wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock",
+          "ResultsServiceUrl": "https://results-receiver.actions.githubusercontent.com/",
+          "PipelinesServiceUrl": "https://pipelinesghubeus9.actions.githubusercontent.com/WamZnOYs2nHeAEXTjsrMD5Uf4629M6CFE6SvlmGWurcNE0O6wf/",
+          "GenerateIdTokenUrl": ""
+        },
+        "name": "SystemVssConnection",
+        "url": "https://run-actions-3-azure-eastus.actions.githubusercontent.com/94/",
+        "authorization": {
+          "parameters": {
+            "AccessToken": "***"
+          },
+          "scheme": "OAuth"
+        },
+        "isShared": false,
+        "isReady": true
+      }
+    ]
+  },
+  "contextData": {
+    "github": {
+      "t": 2,
+      "d": [
+        {
+          "k": "ref",
+          "v": "refs/heads/main"
+        },
+        {
+          "k": "sha",
+          "v": "b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+        },
+        {
+          "k": "repository",
+          "v": "hieulnt-aiot/fullstack-docker-ci-cd"
+        },
+        {
+          "k": "repository_owner",
+          "v": "hieulnt-aiot"
+        },
+        {
+          "k": "repository_owner_id",
+          "v": "216487783"
+        },
+        {
+          "k": "repositoryUrl",
+          "v": "git://github.com/hieulnt-aiot/fullstack-docker-ci-cd.git"
+        },
+        {
+          "k": "run_id",
+          "v": "15870241400"
+        },
+        {
+          "k": "run_number",
+          "v": "30"
+        },
+        {
+          "k": "retention_days",
+          "v": "90"
+        },
+        {
+          "k": "run_attempt",
+          "v": "1"
+        },
+        {
+          "k": "artifact_cache_size_limit",
+          "v": "10"
+        },
+        {
+          "k": "repository_visibility",
+          "v": "public"
+        },
+        {
+          "k": "actor_id",
+          "v": "216487783"
+        },
+        {
+          "k": "actor",
+          "v": "hieulnt-aiot"
+        },
+        {
+          "k": "workflow",
+          "v": "Build, Push, Pull & Deploy (Self-hosted)"
+        },
+        {
+          "k": "head_ref",
+          "v": ""
+        },
+        {
+          "k": "base_ref",
+          "v": ""
+        },
+        {
+          "k": "event_name",
+          "v": "push"
+        },
+        {
+          "k": "server_url",
+          "v": "https://github.com"
+        },
+        {
+          "k": "api_url",
+          "v": "https://api.github.com"
+        },
+        {
+          "k": "graphql_url",
+          "v": "https://api.github.com/graphql"
+        },
+        {
+          "k": "ref_name",
+          "v": "main"
+        },
+        {
+          "k": "ref_protected",
+          "v": false
+        },
+        {
+          "k": "ref_type",
+          "v": "branch"
+        },
+        {
+          "k": "secret_source",
+          "v": "Actions"
+        },
+        {
+          "k": "event",
+          "v": {
+            "t": 2,
+            "d": [
+              {
+                "k": "after",
+                "v": "b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+              },
+              {
+                "k": "base_ref",
+                "v": null
+              },
+              {
+                "k": "before",
+                "v": "0edb6a80fbaab82d6254e98af201e89d4f23bf40"
+              },
+              {
+                "k": "commits",
+                "v": {
+                  "t": 1,
+                  "a": [
+                    {
+                      "t": 2,
+                      "d": [
+                        {
+                          "k": "author",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "hieulnt@aiot-global.com"
+                              },
+                              {
+                                "k": "name",
+                                "v": "hieulnt-aiot"
+                              },
+                              {
+                                "k": "username",
+                                "v": "hieulnt-aiot"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "committer",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "hieulnt@aiot-global.com"
+                              },
+                              {
+                                "k": "name",
+                                "v": "hieulnt-aiot"
+                              },
+                              {
+                                "k": "username",
+                                "v": "hieulnt-aiot"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "distinct",
+                          "v": true
+                        },
+                        {
+                          "k": "id",
+                          "v": "b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+                        },
+                        {
+                          "k": "message",
+                          "v": "fix: [refactor] dockerfile frontend 16"
+                        },
+                        {
+                          "k": "timestamp",
+                          "v": "2025-06-25T14:34:34+07:00"
+                        },
+                        {
+                          "k": "tree_id",
+                          "v": "3692ee0de5b169f349a9cbadfca2975f228ac915"
+                        },
+                        {
+                          "k": "url",
+                          "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd/commit/b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "compare",
+                "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd/compare/0edb6a80fbaa...b8fbbdbf4ee5"
+              },
+              {
+                "k": "created",
+                "v": false
+              },
+              {
+                "k": "deleted",
+                "v": false
+              },
+              {
+                "k": "forced",
+                "v": false
+              },
+              {
+                "k": "head_commit",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "author",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "hieulnt@aiot-global.com"
+                          },
+                          {
+                            "k": "name",
+                            "v": "hieulnt-aiot"
+                          },
+                          {
+                            "k": "username",
+                            "v": "hieulnt-aiot"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "committer",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "hieulnt@aiot-global.com"
+                          },
+                          {
+                            "k": "name",
+                            "v": "hieulnt-aiot"
+                          },
+                          {
+                            "k": "username",
+                            "v": "hieulnt-aiot"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "distinct",
+                      "v": true
+                    },
+                    {
+                      "k": "id",
+                      "v": "b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+                    },
+                    {
+                      "k": "message",
+                      "v": "fix: [refactor] dockerfile frontend 16"
+                    },
+                    {
+                      "k": "timestamp",
+                      "v": "2025-06-25T14:34:34+07:00"
+                    },
+                    {
+                      "k": "tree_id",
+                      "v": "3692ee0de5b169f349a9cbadfca2975f228ac915"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd/commit/b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "pusher",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "email",
+                      "v": "hieulnt@aiot-global.com"
+                    },
+                    {
+                      "k": "name",
+                      "v": "hieulnt-aiot"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "ref",
+                "v": "refs/heads/main"
+              },
+              {
+                "k": "repository",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "allow_forking",
+                      "v": true
+                    },
+                    {
+                      "k": "archive_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/{archive_format}{/ref}"
+                    },
+                    {
+                      "k": "archived",
+                      "v": false
+                    },
+                    {
+                      "k": "assignees_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/assignees{/user}"
+                    },
+                    {
+                      "k": "blobs_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/git/blobs{/sha}"
+                    },
+                    {
+                      "k": "branches_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/branches{/branch}"
+                    },
+                    {
+                      "k": "clone_url",
+                      "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd.git"
+                    },
+                    {
+                      "k": "collaborators_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/collaborators{/collaborator}"
+                    },
+                    {
+                      "k": "comments_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/comments{/number}"
+                    },
+                    {
+                      "k": "commits_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/commits{/sha}"
+                    },
+                    {
+                      "k": "compare_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/compare/{base}...{head}"
+                    },
+                    {
+                      "k": "contents_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/contents/{+path}"
+                    },
+                    {
+                      "k": "contributors_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/contributors"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": 1750754676.0
+                    },
+                    {
+                      "k": "default_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "deployments_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/deployments"
+                    },
+                    {
+                      "k": "description",
+                      "v": null
+                    },
+                    {
+                      "k": "disabled",
+                      "v": false
+                    },
+                    {
+                      "k": "downloads_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/downloads"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/events"
+                    },
+                    {
+                      "k": "fork",
+                      "v": false
+                    },
+                    {
+                      "k": "forks",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/forks"
+                    },
+                    {
+                      "k": "full_name",
+                      "v": "hieulnt-aiot/fullstack-docker-ci-cd"
+                    },
+                    {
+                      "k": "git_commits_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/git/commits{/sha}"
+                    },
+                    {
+                      "k": "git_refs_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/git/refs{/sha}"
+                    },
+                    {
+                      "k": "git_tags_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/git/tags{/sha}"
+                    },
+                    {
+                      "k": "git_url",
+                      "v": "git://github.com/hieulnt-aiot/fullstack-docker-ci-cd.git"
+                    },
+                    {
+                      "k": "has_discussions",
+                      "v": false
+                    },
+                    {
+                      "k": "has_downloads",
+                      "v": true
+                    },
+                    {
+                      "k": "has_issues",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pages",
+                      "v": false
+                    },
+                    {
+                      "k": "has_projects",
+                      "v": true
+                    },
+                    {
+                      "k": "has_wiki",
+                      "v": true
+                    },
+                    {
+                      "k": "homepage",
+                      "v": null
+                    },
+                    {
+                      "k": "hooks_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/hooks"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd"
+                    },
+                    {
+                      "k": "id",
+                      "v": 1007602166.0
+                    },
+                    {
+                      "k": "is_template",
+                      "v": false
+                    },
+                    {
+                      "k": "issue_comment_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/issues/comments{/number}"
+                    },
+                    {
+                      "k": "issue_events_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/issues/events{/number}"
+                    },
+                    {
+                      "k": "issues_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/issues{/number}"
+                    },
+                    {
+                      "k": "keys_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/keys{/key_id}"
+                    },
+                    {
+                      "k": "labels_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/labels{/name}"
+                    },
+                    {
+                      "k": "language",
+                      "v": "JavaScript"
+                    },
+                    {
+                      "k": "languages_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/languages"
+                    },
+                    {
+                      "k": "license",
+                      "v": null
+                    },
+                    {
+                      "k": "master_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "merges_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/merges"
+                    },
+                    {
+                      "k": "milestones_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/milestones{/number}"
+                    },
+                    {
+                      "k": "mirror_url",
+                      "v": null
+                    },
+                    {
+                      "k": "name",
+                      "v": "fullstack-docker-ci-cd"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "R_kgDOPA7J9g"
+                    },
+                    {
+                      "k": "notifications_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/notifications{?since,all,participating}"
+                    },
+                    {
+                      "k": "open_issues",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "open_issues_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "owner",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/216487783?v=4"
+                          },
+                          {
+                            "k": "email",
+                            "v": "hieulnt@aiot-global.com"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/hieulnt-aiot"
+                          },
+                          {
+                            "k": "id",
+                            "v": 216487783.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "hieulnt-aiot"
+                          },
+                          {
+                            "k": "name",
+                            "v": "hieulnt-aiot"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDODOdXZw"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/hieulnt-aiot/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/hieulnt-aiot"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "private",
+                      "v": false
+                    },
+                    {
+                      "k": "pulls_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/pulls{/number}"
+                    },
+                    {
+                      "k": "pushed_at",
+                      "v": 1750836877.0
+                    },
+                    {
+                      "k": "releases_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/releases{/id}"
+                    },
+                    {
+                      "k": "size",
+                      "v": 153171.0
+                    },
+                    {
+                      "k": "ssh_url",
+                      "v": "git@github.com:hieulnt-aiot/fullstack-docker-ci-cd.git"
+                    },
+                    {
+                      "k": "stargazers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/stargazers"
+                    },
+                    {
+                      "k": "statuses_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/statuses/{sha}"
+                    },
+                    {
+                      "k": "subscribers_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/subscribers"
+                    },
+                    {
+                      "k": "subscription_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/subscription"
+                    },
+                    {
+                      "k": "svn_url",
+                      "v": "https://github.com/hieulnt-aiot/fullstack-docker-ci-cd"
+                    },
+                    {
+                      "k": "tags_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/tags"
+                    },
+                    {
+                      "k": "teams_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/teams"
+                    },
+                    {
+                      "k": "topics",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "trees_url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd/git/trees{/sha}"
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2025-06-25T07:31:53Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/hieulnt-aiot/fullstack-docker-ci-cd"
+                    },
+                    {
+                      "k": "visibility",
+                      "v": "public"
+                    },
+                    {
+                      "k": "watchers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "watchers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "web_commit_signoff_required",
+                      "v": false
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "sender",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "avatar_url",
+                      "v": "https://avatars.githubusercontent.com/u/216487783?v=4"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/events{/privacy}"
+                    },
+                    {
+                      "k": "followers_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/followers"
+                    },
+                    {
+                      "k": "following_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/following{/other_user}"
+                    },
+                    {
+                      "k": "gists_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/gists{/gist_id}"
+                    },
+                    {
+                      "k": "gravatar_id",
+                      "v": ""
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/hieulnt-aiot"
+                    },
+                    {
+                      "k": "id",
+                      "v": 216487783.0
+                    },
+                    {
+                      "k": "login",
+                      "v": "hieulnt-aiot"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "U_kgDODOdXZw"
+                    },
+                    {
+                      "k": "organizations_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/orgs"
+                    },
+                    {
+                      "k": "received_events_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/received_events"
+                    },
+                    {
+                      "k": "repos_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/repos"
+                    },
+                    {
+                      "k": "site_admin",
+                      "v": false
+                    },
+                    {
+                      "k": "starred_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/starred{/owner}{/repo}"
+                    },
+                    {
+                      "k": "subscriptions_url",
+                      "v": "https://api.github.com/users/hieulnt-aiot/subscriptions"
+                    },
+                    {
+                      "k": "type",
+                      "v": "User"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/users/hieulnt-aiot"
+                    },
+                    {
+                      "k": "user_view_type",
+                      "v": "public"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "k": "workflow_ref",
+          "v": "hieulnt-aiot/fullstack-docker-ci-cd/.github/workflows/deploy.yml@refs/heads/main"
+        },
+        {
+          "k": "workflow_sha",
+          "v": "b8fbbdbf4ee5006b7ec738f11e40774fdbb6d261"
+        },
+        {
+          "k": "repository_id",
+          "v": "1007602166"
+        },
+        {
+          "k": "triggering_actor",
+          "v": "hieulnt-aiot"
+        }
+      ]
+    },
+    "inputs": {
+      "t": 2
+    },
+    "matrix": null,
+    "needs": {
+      "t": 2
+    },
+    "strategy": {
+      "t": 2,
+      "d": [
+        {
+          "k": "fail-fast",
+          "v": true
+        },
+        {
+          "k": "job-index",
+          "v": 0.0
+        },
+        {
+          "k": "job-total",
+          "v": 1.0
+        },
+        {
+          "k": "max-parallel",
+          "v": 1.0
+        }
+      ]
+    },
+    "vars": {
+      "t": 2
+    }
+  },
+  "billingOwnerId": "U_kgDODOdXZw"
+}
+[2025-06-25 07:34:47Z INFO JobRunner] Job ID d774c351-203f-5aa9-b59b-18fddae9fe7c
+[2025-06-25 07:34:47Z INFO ConfigurationStore] currentAssemblyLocation: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin/Runner.Worker.dll
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] binPath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] RootFolder: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Runner': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.runner'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] ConfigFilePath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.runner
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'MigratedRunner': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.runner_migrated'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] MigratedConfigFilePath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.runner_migrated
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Credentials': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] CredFilePath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'MigratedCredentials': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials_migrated'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] MigratedCredFilePath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials_migrated
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Service': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.service'
+[2025-06-25 07:34:47Z INFO ConfigurationStore] ServiceConfigFilePath: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.service
+[2025-06-25 07:34:47Z INFO ConfigurationStore] Read setting file: 413 chars
+[2025-06-25 07:34:47Z INFO JobRunner] Initializing launch client
+[2025-06-25 07:34:47Z INFO JobServerQueue] Initializing results client
+[2025-06-25 07:34:47Z INFO ResultServer] Creating websocket client ...wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock
+[2025-06-25 07:34:47Z INFO ResultServer] Attempting to start websocket client with delay 00:00:00.
+[2025-06-25 07:34:47Z INFO JobServerQueue] Start process web console line queue.
+[2025-06-25 07:34:47Z INFO JobServerQueue] Start process file upload queue.
+[2025-06-25 07:34:47Z INFO JobServerQueue] Start results file upload queue.
+[2025-06-25 07:34:47Z INFO JobServerQueue] Starting results-based upload queue...
+[2025-06-25 07:34:47Z INFO JobServerQueue] Start process timeline update queue.
+[2025-06-25 07:34:47Z INFO ExecutionContext] Initializing Job context
+[2025-06-25 07:34:47Z INFO ExecutionContext] Initialize GitHub context
+[2025-06-25 07:34:47Z INFO ExecutionContext] Initialize Env context
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:47Z INFO JobRunner] Starting the job execution context.
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO JobRunner] Validating directory permissions for: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Tools': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_tool'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:34:47Z INFO JobRunner] Getting job extension.
+[2025-06-25 07:34:47Z INFO JobRunner] Initialize job. Getting all job steps.
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'Credentials': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known config file 'SetupInfo': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.setup_info'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO PipelineDirectoryManager] Loading tracking config if exists: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_PipelineMapping/hieulnt-aiot/fullstack-docker-ci-cd/PipelineFolder.json
+[2025-06-25 07:34:47Z INFO PipelineDirectoryManager] Updating job run properties.
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO JobExtension] Downloading actions
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:47Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:47Z INFO Worker] Listening for cancel message from the channel.
+[2025-06-25 07:34:47Z INFO Worker] Waiting for the job to complete or for a cancel message from the channel.
+[2025-06-25 07:34:48Z INFO ResultServer] Successfully started websocket client.
+[2025-06-25 07:34:48Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bbaf0c31-b8a3-4c0b-bec6-7223f7196767', success rate: 1/1.
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:49Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:49Z INFO ActionManager] Save archive 'https://api.github.com/repos/actions/checkout/tarball/f43a0e5ff2bd294095638e18286ca9a3d1956744' into /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/_temp_728a5632-39e4-43b0-8ae3-0aa2d60b980d/11ae804c-7d86-417d-9bdd-c87fceda9ac6.tar.gz.
+[2025-06-25 07:34:49Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bbaf0c31-b8a3-4c0b-bec6-7223f7196767', success rate: 1/1.
+[2025-06-25 07:34:49Z INFO JobServerQueue] Job timeline record has been updated for the first time.
+[2025-06-25 07:34:50Z INFO ActionManager] Request URL: https://api.github.com/repos/actions/checkout/tarball/f43a0e5ff2bd294095638e18286ca9a3d1956744 X-GitHub-Request-Id: D0DF:18F4D5:BE38C:280C80:685BA699 Http Status: OK
+[2025-06-25 07:34:50Z INFO ActionManager] Which2: 'tar'
+[2025-06-25 07:34:50Z INFO ActionManager] Location: '/usr/bin/tar'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   File name: '/usr/bin/tar'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Arguments: '-xzf "/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/_temp_728a5632-39e4-43b0-8ae3-0aa2d60b980d/11ae804c-7d86-417d-9bdd-c87fceda9ac6.tar.gz"'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/_temp_728a5632-39e4-43b0-8ae3-0aa2d60b980d/_staging'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] Process started with process id 78522, waiting for process exit.
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] Finished process 78522 with exit code 0, and elapsed time 00:00:00.0456329.
+[2025-06-25 07:34:50Z INFO ActionManager] Finished getting action repository.
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Load schema file with definitions: [
+  "null",
+  "boolean",
+  "number",
+  "string",
+  "sequence",
+  "mapping",
+  "any",
+  "action-root",
+  "inputs",
+  "input",
+  "outputs",
+  "output-definition",
+  "runs",
+  "container-runs",
+  "container-runs-args",
+  "container-runs-env",
+  "node-runs",
+  "plugin-runs",
+  "composite-runs",
+  "composite-steps",
+  "composite-step",
+  "run-step",
+  "uses-step",
+  "container-runs-context",
+  "output-value",
+  "input-default-context",
+  "non-empty-string",
+  "string-steps-context",
+  "boolean-steps-context",
+  "step-env",
+  "step-if",
+  "step-with"
+]
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 50,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 53,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 56,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 61,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 67,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 68,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 71,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node16",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-06-25 07:34:50Z INFO ActionManager] Action node.js file: dist/index.js, no more preparation.
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManager] Load action that reference repository from '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/actions/checkout/v3'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 50,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 53,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 56,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 61,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 67,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 68,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 71,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node16",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-06-25 07:34:50Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-06-25 07:34:50Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-06-25 07:34:50Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO JobExtension] Adding .
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO JobExtension] Total accessible running process: 275.
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO JobExtension] Start checking service connectivity in background.
+[2025-06-25 07:34:50Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "setup_job",
+  "type": "runner",
+  "stage": "Pre",
+  "stepId": "bbaf0c31-b8a3-4c0b-bec6-7223f7196767",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 3,
+  "startTime": "2025-06-25T07:34:47.742141Z",
+  "finishTime": "2025-06-25T07:34:50.576814Z"
+}.
+[2025-06-25 07:34:50Z INFO JobRunner] Total job steps: 13.
+[2025-06-25 07:34:50Z INFO JobRunner] Run all job steps.
+[2025-06-25 07:34:50Z INFO StepsRunner] Processing step: DisplayName='🧾 Checkout code'
+[2025-06-25 07:34:50Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:34:50Z INFO StepsRunner] Result: true
+[2025-06-25 07:34:50Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManager] Load action that reference repository from '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/actions/checkout/v3'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 50,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 53,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 56,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 61,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 67,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 68,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 71,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node16",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-06-25 07:34:50Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-06-25 07:34:50Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-06-25 07:34:50Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-06-25 07:34:50Z INFO ExecutionContext] Reserve record order 15 to 28 for post job actions.
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:34:50Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:34:50Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathFileCommand, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvFileCommand, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.CreateStepSummaryCommand, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateFileCommand, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputFileCommand, Runner.Worker
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'repository': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 6,
+  "col": 14,
+  "lit": "hieulnt-aiot/fullstack-docker-ci-cd"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'ref': default value evaluate result: ""
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'token': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 24,
+  "col": 14,
+  "lit": "***"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'ssh-key': default value evaluate result: ""
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'ssh-known-hosts': default value evaluate result: ""
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'ssh-strict': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 47,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'persist-credentials': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 50,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'path': default value evaluate result: ""
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'clean': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 55,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'sparse-checkout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 60,
+  "col": 14,
+  "lit": ""
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'sparse-checkout-cone-mode': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 64,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'fetch-depth': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 67,
+  "col": 14,
+  "lit": "1"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'fetch-tags': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 70,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'lfs': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 73,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'submodules': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 82,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'set-safe-directory': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 85,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:34:50Z INFO ActionManifestManager] Input 'github-server-url': default value evaluate result: ""
+[2025-06-25 07:34:50Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.InternalPluginSetRepoPathCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMaskCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMatcherCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.RemoveMatcherCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.WarningCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.ErrorCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.NoticeCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.DebugCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.GroupCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EndGroupCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EchoCommandExtension, Runner.Worker
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:34:50Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:34:50Z INFO HostContext] Well known directory 'Externals': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/externals'
+[2025-06-25 07:34:50Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bbaf0c31-b8a3-4c0b-bec6-7223f7196767', success rate: 1/1.
+[2025-06-25 07:34:50Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   File name: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/externals/node20/bin/node'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Arguments: '"/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/actions/checkout/v3/dist/index.js"'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:34:50Z INFO ProcessInvokerWrapper] Process started with process id 78532, waiting for process exit.
+[2025-06-25 07:34:50Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:34:50Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_bbaf0c31-b8a3-4c0b-bec6-7223f7196767.1
+[2025-06-25 07:34:50Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2025-06-25 07:34:50Z INFO AddMaskCommandExtension] Add new secret mask with length of 76
+[2025-06-25 07:34:51Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:51Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:51Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:51Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:52Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:52Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2025-06-25 07:34:53Z INFO JobServerQueue] Try to append 2 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 2/2.
+[2025-06-25 07:34:53Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:55Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:56Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:57Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:58Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:59Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:59Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:34:59Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:00Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:00Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:00Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:00Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:00Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:00Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:01Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:02Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:02Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:02Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:03Z INFO JobServerQueue] Try to append 2 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 2/2.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Finished process 78532 with exit code 0, and elapsed time 00:00:13.8547588.
+[2025-06-25 07:35:04Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_2366a88d-3b85-45d2-8784-19a0c99431c8) is empty; skipping attachment upload
+[2025-06-25 07:35:04Z INFO StepsRunner] Step result: 
+[2025-06-25 07:35:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record '188e8709-303c-42a8-ab5b-64ae35a88e6a', success rate: 1/1.
+[2025-06-25 07:35:04Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "actions/checkout",
+  "ref": "v3",
+  "type": "node20",
+  "stage": "Main",
+  "stepId": "188e8709-303c-42a8-ab5b-64ae35a88e6a",
+  "stepContextName": "__actions_checkout",
+  "hasPreStep": false,
+  "hasPostStep": true,
+  "result": "succeeded",
+  "errorMessages": [
+    "no submodule mapping found in .gitmodules for path 'actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'",
+    "Unable to clean or reset the repository. The repository will be recreated instead."
+  ],
+  "executionTimeInSeconds": 14,
+  "startTime": "2025-06-25T07:34:50.594962Z",
+  "finishTime": "2025-06-25T07:35:04.501039Z"
+}.
+[2025-06-25 07:35:04Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-06-25 07:35:04Z INFO StepsRunner] Current state: job state = ''
+[2025-06-25 07:35:04Z INFO StepsRunner] Processing step: DisplayName='Generate .env file for backend'
+[2025-06-25 07:35:04Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:04Z INFO StepsRunner] Result: true
+[2025-06-25 07:35:04Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:35:04Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:35:04Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   File name: '/bin/bash'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Arguments: '-e /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/92044135-992d-4eae-b5d0-9596bd287d52.sh'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Process started with process id 78961, waiting for process exit.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Finished process 78961 with exit code 0, and elapsed time 00:00:00.0267830.
+[2025-06-25 07:35:04Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_729158ee-c3f4-4e1c-bcfd-3ec1ddeca6d2) is empty; skipping attachment upload
+[2025-06-25 07:35:04Z INFO StepsRunner] Step result: 
+[2025-06-25 07:35:04Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "sh",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "71137e13-6669-49cc-82c5-923a39f5f840",
+  "stepContextName": "__run",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-06-25T07:35:04.50593Z",
+  "finishTime": "2025-06-25T07:35:04.556504Z"
+}.
+[2025-06-25 07:35:04Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-06-25 07:35:04Z INFO StepsRunner] Current state: job state = ''
+[2025-06-25 07:35:04Z INFO StepsRunner] Processing step: DisplayName='🛠️ Build backend image'
+[2025-06-25 07:35:04Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:04Z INFO StepsRunner] Result: true
+[2025-06-25 07:35:04Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:35:04Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:35:04Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:35:04Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:04Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:04Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   File name: '/bin/bash'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Arguments: '-e /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/bcde033e-009f-4e19-9a6d-bf51db31bfd9.sh'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:04Z INFO ProcessInvokerWrapper] Process started with process id 78963, waiting for process exit.
+[2025-06-25 07:35:04Z INFO JobServerQueue] Try to upload 2 log files or attachments, success rate: 2/2.
+[2025-06-25 07:35:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record '71137e13-6669-49cc-82c5-923a39f5f840', success rate: 1/1.
+[2025-06-25 07:35:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1af48c5d-9ded-4f5b-bdad-caa5bed53539', success rate: 1/1.
+[2025-06-25 07:35:04Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:04Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_188e8709-303c-42a8-ab5b-64ae35a88e6a.1
+[2025-06-25 07:35:05Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1af48c5d-9ded-4f5b-bdad-caa5bed53539', success rate: 1/1.
+[2025-06-25 07:35:05Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:05Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_71137e13-6669-49cc-82c5-923a39f5f840.1
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1af48c5d-9ded-4f5b-bdad-caa5bed53539', success rate: 1/1.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Finished process 78963 with exit code 0, and elapsed time 00:00:01.5879100.
+[2025-06-25 07:35:06Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_3d063e66-5027-4c68-8575-d86fbc786238) is empty; skipping attachment upload
+[2025-06-25 07:35:06Z INFO StepsRunner] Step result: 
+[2025-06-25 07:35:06Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "sh",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "1af48c5d-9ded-4f5b-bdad-caa5bed53539",
+  "stepContextName": "__run_2",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 2,
+  "startTime": "2025-06-25T07:35:04.557279Z",
+  "finishTime": "2025-06-25T07:35:06.158123Z"
+}.
+[2025-06-25 07:35:06Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-06-25 07:35:06Z INFO StepsRunner] Current state: job state = ''
+[2025-06-25 07:35:06Z INFO StepsRunner] Processing step: DisplayName='Generate .env file for frontend'
+[2025-06-25 07:35:06Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:06Z INFO StepsRunner] Result: true
+[2025-06-25 07:35:06Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:35:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:35:06Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   File name: '/bin/bash'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Arguments: '-e /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/2d964b62-b672-461b-aa25-2af7e1492688.sh'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Process started with process id 79005, waiting for process exit.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Finished process 79005 with exit code 0, and elapsed time 00:00:00.0238432.
+[2025-06-25 07:35:06Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_edeffa21-954a-4644-a43c-6266ab2493dc) is empty; skipping attachment upload
+[2025-06-25 07:35:06Z INFO StepsRunner] Step result: 
+[2025-06-25 07:35:06Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "sh",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "bee815ea-7821-4314-b8a0-76355115e8e9",
+  "stepContextName": "__run_3",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-06-25T07:35:06.159039Z",
+  "finishTime": "2025-06-25T07:35:06.19478Z"
+}.
+[2025-06-25 07:35:06Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-06-25 07:35:06Z INFO StepsRunner] Current state: job state = ''
+[2025-06-25 07:35:06Z INFO StepsRunner] Processing step: DisplayName='🛠️ Build frontend image'
+[2025-06-25 07:35:06Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:06Z INFO StepsRunner] Result: true
+[2025-06-25 07:35:06Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:35:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:35:06Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:35:06Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:06Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Which2: 'bash'
+[2025-06-25 07:35:06Z INFO ScriptHandler] Location: '/bin/bash'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   File name: '/bin/bash'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Arguments: '-e /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/492e1449-8cea-431b-bb48-46b630492499.sh'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:06Z INFO ProcessInvokerWrapper] Process started with process id 79006, waiting for process exit.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1af48c5d-9ded-4f5b-bdad-caa5bed53539', success rate: 1/1.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bee815ea-7821-4314-b8a0-76355115e8e9', success rate: 1/1.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Try to upload 2 log files or attachments, success rate: 2/2.
+[2025-06-25 07:35:06Z INFO JobServerQueue] Tried to upload 2 file(s) to results, success rate: 2/2.
+[2025-06-25 07:35:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:07Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:07Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_1af48c5d-9ded-4f5b-bdad-caa5bed53539.1
+[2025-06-25 07:35:08Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:08Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:08Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:08Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_bee815ea-7821-4314-b8a0-76355115e8e9.1
+[2025-06-25 07:35:09Z INFO JobServerQueue] Tried to upload 2 file(s) to results, success rate: 2/2.
+[2025-06-25 07:35:10Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:10Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:10Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:11Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:11Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:12Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:13Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:13Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:13Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Finished process 79006 with exit code 1, and elapsed time 00:00:10.2631552.
+[2025-06-25 07:35:16Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_581415c5-0f35-4ca7-a172-7ce9b29d09e1) is empty; skipping attachment upload
+[2025-06-25 07:35:16Z INFO StepsRunner] Step result: Failed
+[2025-06-25 07:35:16Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "sh",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "29dd4f3a-e18a-4ce8-922b-e4f26758e748",
+  "stepContextName": "__run_4",
+  "result": "failed",
+  "errorMessages": [
+    "Process completed with exit code 1."
+  ],
+  "executionTimeInSeconds": 11,
+  "startTime": "2025-06-25T07:35:06.195904Z",
+  "finishTime": "2025-06-25T07:35:16.470727Z"
+}.
+[2025-06-25 07:35:16Z INFO StepsRunner] Update job result with current step result 'Failed'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='🔐 Login to Docker Hub'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='⬆️ Push backend image'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='⬆️ Push frontend image'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='⬇️ Pull backend image'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='⬇️ Pull frontend image'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='🧹 Stop and remove old containers'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='🚀 Start new containers'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='🧼 Clean up unused images'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: success()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: false
+[2025-06-25 07:35:16Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO StepsRunner] Processing step: DisplayName='Post 🧾 Checkout code'
+[2025-06-25 07:35:16Z INFO StepsRunner] Evaluating: always()
+[2025-06-25 07:35:16Z INFO StepsRunner] Result: true
+[2025-06-25 07:35:16Z INFO StepsRunner] Starting the step.
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:35:16Z INFO ActionManager] Load action that reference repository from '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/actions/checkout/v3'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Actions': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions'
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 50,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 53,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 56,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 61,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 67,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 68,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 71,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node16",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-06-25 07:35:16Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-06-25 07:35:16Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-06-25 07:35:16Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:16Z INFO ExecutionContext] Write event payload to /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_github_workflow/event.json
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Work': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Temp': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp'
+[2025-06-25 07:35:16Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'repository': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 6,
+  "col": 14,
+  "lit": "hieulnt-aiot/fullstack-docker-ci-cd"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'ref': default value evaluate result: ""
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'token': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 24,
+  "col": 14,
+  "lit": "***"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'ssh-key': default value evaluate result: ""
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'ssh-known-hosts': default value evaluate result: ""
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'ssh-strict': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 47,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'persist-credentials': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 50,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'path': default value evaluate result: ""
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'clean': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 55,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'sparse-checkout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 60,
+  "col": 14,
+  "lit": ""
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'sparse-checkout-cone-mode': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 64,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'fetch-depth': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 67,
+  "col": 14,
+  "lit": "1"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'fetch-tags': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 70,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'lfs': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 73,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'submodules': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 82,
+  "col": 14,
+  "lit": "false"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'set-safe-directory': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 85,
+  "col": 14,
+  "lit": "true"
+}
+[2025-06-25 07:35:16Z INFO ActionManifestManager] Input 'github-server-url': default value evaluate result: ""
+[2025-06-25 07:35:16Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command error
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command group
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-06-25 07:35:16Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Externals': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/externals'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   File name: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/externals/node20/bin/node'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Arguments: '"/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_actions/actions/checkout/v3/dist/index.js"'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/fullstack-docker-ci-cd/fullstack-docker-ci-cd'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Process started with process id 79249, waiting for process exit.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record '29dd4f3a-e18a-4ce8-922b-e4f26758e748', success rate: 1/1.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'd93eac67-d39b-405e-840b-70da4ad7709f', success rate: 1/1.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_29dd4f3a-e18a-4ce8-922b-e4f26758e748.1
+[2025-06-25 07:35:16Z INFO AddMaskCommandExtension] Add new secret mask with length of 32
+[2025-06-25 07:35:16Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2025-06-25 07:35:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'd93eac67-d39b-405e-840b-70da4ad7709f', success rate: 1/1.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Finished process 79249 with exit code 0, and elapsed time 00:00:00.4225135.
+[2025-06-25 07:35:16Z INFO CreateStepSummaryCommand] Step Summary file (/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp/_runner_file_commands/step_summary_efbfc6f9-fcfa-4d24-ab1f-990e4142a63a) is empty; skipping attachment upload
+[2025-06-25 07:35:16Z INFO StepsRunner] Step result: 
+[2025-06-25 07:35:16Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "actions/checkout",
+  "ref": "v3",
+  "type": "node20",
+  "stage": "Post",
+  "stepId": "d93eac67-d39b-405e-840b-70da4ad7709f",
+  "result": "succeeded",
+  "errorMessages": [
+    "The process '/opt/homebrew/bin/git' failed with exit code 128"
+  ],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-06-25T07:35:16.478529Z",
+  "finishTime": "2025-06-25T07:35:16.919538Z"
+}.
+[2025-06-25 07:35:16Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-06-25 07:35:16Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-06-25 07:35:16Z INFO JobRunner] Finalize job.
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:35:16Z INFO JobExtension] Initialize Env context
+[2025-06-25 07:35:16Z INFO JobExtension] Initialize steps context
+[2025-06-25 07:35:16Z INFO JobExtension] Total accessible running process: 259.
+[2025-06-25 07:35:16Z INFO JobExtension] Inspecting process environment variables. PID: 79248 (mdworker_shared)
+[2025-06-25 07:35:16Z INFO LinuxProcessExtensions] Read env from output of `ps e -p 79248 -o command`
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   File name: 'ps'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Arguments: 'e -p 79248 -o command'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Process started with process id 79288, waiting for process exit.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Finished process 79288 with exit code 0, and elapsed time 00:00:00.0279169.
+[2025-06-25 07:35:16Z INFO LinuxProcessExtensions] Successfully dump environment variables for 79248
+[2025-06-25 07:35:16Z INFO JobExtension] Inspecting process environment variables. PID: 79243 (mdworker_shared)
+[2025-06-25 07:35:16Z INFO LinuxProcessExtensions] Read env from output of `ps e -p 79243 -o command`
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   File name: 'ps'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Arguments: 'e -p 79243 -o command'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Process started with process id 79293, waiting for process exit.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Finished process 79293 with exit code 0, and elapsed time 00:00:00.0205999.
+[2025-06-25 07:35:16Z INFO LinuxProcessExtensions] Successfully dump environment variables for 79243
+[2025-06-25 07:35:16Z INFO JobExtension] Inspecting process environment variables. PID: 79242 (mdworker_shared)
+[2025-06-25 07:35:16Z INFO LinuxProcessExtensions] Read env from output of `ps e -p 79242 -o command`
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:16Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   File name: 'ps'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Arguments: 'e -p 79242 -o command'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:16Z INFO ProcessInvokerWrapper] Process started with process id 79294, waiting for process exit.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] Finished process 79294 with exit code 0, and elapsed time 00:00:00.0230025.
+[2025-06-25 07:35:17Z INFO LinuxProcessExtensions] Successfully dump environment variables for 79242
+[2025-06-25 07:35:17Z INFO JobExtension] Inspecting process environment variables. PID: 79241 (mdworker_shared)
+[2025-06-25 07:35:17Z INFO LinuxProcessExtensions] Read env from output of `ps e -p 79241 -o command`
+[2025-06-25 07:35:17Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:17Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] Starting process:
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   File name: 'ps'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Arguments: 'e -p 79241 -o command'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Working directory: '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] Process started with process id 79297, waiting for process exit.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-06-25 07:35:17Z INFO ProcessInvokerWrapper] Finished process 79297 with exit code 0, and elapsed time 00:00:00.0199992.
+[2025-06-25 07:35:17Z INFO LinuxProcessExtensions] Successfully dump environment variables for 79241
+[2025-06-25 07:35:17Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "complete_job",
+  "type": "runner",
+  "stage": "Post",
+  "stepId": "0acee809-3d69-4d09-a86e-8a808cff2ac3",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-06-25T07:35:16.924636Z",
+  "finishTime": "2025-06-25T07:35:17.032772Z"
+}.
+[2025-06-25 07:35:17Z INFO JobRunner] Job result after all job steps finish: Failed
+[2025-06-25 07:35:17Z INFO JobRunner] Completing the job execution context.
+[2025-06-25 07:35:17Z INFO JobRunner] Shutting down the job server queue.
+[2025-06-25 07:35:17Z INFO JobServerQueue] Fire signal to shutdown all queues.
+[2025-06-25 07:35:17Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2025-06-25 07:35:18Z INFO JobServerQueue] All queue process task stopped.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'd93eac67-d39b-405e-840b-70da4ad7709f', success rate: 1/1.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Try to append 1 batches web console lines for record '0acee809-3d69-4d09-a86e-8a808cff2ac3', success rate: 1/1.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Web console line queue drained.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Uploading 3 files in one shot.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Try to upload 3 log files or attachments, success rate: 3/3.
+[2025-06-25 07:35:18Z INFO JobServerQueue] File upload queue drained.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Starting results-based upload queue...
+[2025-06-25 07:35:18Z INFO JobServerQueue] Uploading 3 file(s) in one shot through results service.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:18Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_d93eac67-d39b-405e-840b-70da4ad7709f.1
+[2025-06-25 07:35:19Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-06-25 07:35:19Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_0acee809-3d69-4d09-a86e-8a808cff2ac3.1
+[2025-06-25 07:35:20Z INFO JobServerQueue] Got a job log file to send to results service.
+[2025-06-25 07:35:20Z INFO JobServerQueue] Starting upload of job log file to results service ResultsLog, /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/blocks/520dffdb-eb97-457a-87f7-cb38e5a2c5c0_d774c351-203f-5aa9-b59b-18fddae9fe7c.1
+[2025-06-25 07:35:21Z INFO JobServerQueue] Tried to upload 3 file(s) to results, success rate: 3/3.
+[2025-06-25 07:35:21Z INFO JobServerQueue] Results upload queue drained.
+[2025-06-25 07:35:21Z INFO JobServerQueue] Timeline update queue drained.
+[2025-06-25 07:35:21Z INFO JobServerQueue] Disposing job server ...
+[2025-06-25 07:35:21Z INFO JobServerQueue] Disposing results server ...
+[2025-06-25 07:35:21Z INFO JobServerQueue] All queue process tasks have been stopped, and all queues are drained.
+[2025-06-25 07:35:21Z INFO TempDirectoryManager] Cleaning runner temp folder: /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_work/_temp
+[2025-06-25 07:35:21Z INFO HostContext] Well known directory 'Bin': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/bin'
+[2025-06-25 07:35:21Z INFO HostContext] Well known directory 'Root': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner'
+[2025-06-25 07:35:21Z INFO HostContext] Well known directory 'Diag': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag'
+[2025-06-25 07:35:21Z INFO HostContext] Well known config file 'Telemetry': '/Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/_diag/.telemetry'
+[2025-06-25 07:35:21Z INFO JobRunner] Raising job completed against run service
+[2025-06-25 07:35:22Z INFO Worker] Job completed.

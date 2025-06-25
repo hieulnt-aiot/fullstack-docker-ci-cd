@@ -3,20 +3,19 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy and install deps
+# Copy deps and config
 COPY package*.json ./
-COPY postcss.config.mjs tailwind.config.js ./
+COPY tailwind.config.js postcss.config.mjs next.config.js ./
 RUN npm ci
 
 # Copy source
 COPY . .
 
-# Build static site
+# Build (tự tạo /out nếu có output: 'export')
 RUN npm run build
 
-# Stage 2: Serve with nginx
+# Stage 2: Serve static site with nginx
 FROM nginx:alpine
-
 COPY --from=builder /app/out /usr/share/nginx/html
 
 EXPOSE 80
