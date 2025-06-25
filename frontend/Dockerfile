@@ -12,7 +12,7 @@ RUN npm ci
 COPY . .
 
 # Build static site
-RUN npm run build && npm run export
+RUN npm run build
 
 # Stage 2: Serve with nginx
 FROM nginx:alpine
