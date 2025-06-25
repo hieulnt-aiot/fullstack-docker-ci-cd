@@ -5,10 +5,16 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install --omit=dev
+# 2. Copy schema.prisma và prisma directory trước (nếu có)
+COPY prisma ./prisma
 
-RUN npx prisma generate --schema=prisma/schema.prisma
+# 3. Chạy prisma generate
+RUN npx prisma generate
 
+# 4. Sau đó mới copy toàn bộ source
 COPY . .
+
+# 5. Build NestJS
 RUN npm run build
 
 # Stage 2: Run app
