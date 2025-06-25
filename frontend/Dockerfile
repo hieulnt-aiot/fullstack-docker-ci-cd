@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy deps and config
 COPY package*.json ./
-COPY tailwind.config.js postcss.config.mjs next.config.js ./
+COPY tailwind.config.js postcss.config.mjs next.config.ts ./
 RUN npm ci
 
 # Copy source
