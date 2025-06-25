@@ -1,29 +1,50 @@
-# Stage 1: Build the app
+# Stage 1: Build static site
 FROM node:18-alpine AS builder
+
 WORKDIR /app
 
-# Copy deps and install
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
-# Copy everything else
 COPY . .
+RUN npm run build && npm run export
 
-# 👇 Ensure .env.local is copied before build
-COPY .env.local .env.local
+# Stage 2: Serve with nginx
+FROM nginx:alpine
 
-# Build the frontend with env vars injected
-RUN npm run build
+COPY --from=builder /app/out /usr/share/nginx/html
 
-# Stage 2: Run the app
-FROM node:18-alpine
-WORKDIR /app
+# Optional: Custom nginx config
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy from build stage
-COPY --from=builder /app ./
+EXPOSE 80
 
-# Install only production deps
-RUN npm install --production
+# # Stage 1: Build the app
+# FROM node:18-alpine AS builder
+# WORKDIR /app
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# # Copy deps and install
+# COPY package*.json ./
+# RUN npm install
+
+# # Copy everything else
+# COPY . .
+
+# # 👇 Ensure .env.local is copied before build
+# COPY .env.local .env.local
+
+# # Build the frontend with env vars injected
+# RUN npm run build
+
+# # Stage 2: Run the app
+# FROM node:18-alpine
+# WORKDIR /app
+
+# # Copy from build stage
+# COPY --from=builder /app ./
+
+# # Install only production deps
+# RUN npm install --production
+
+# EXPOSE 3000
+# CMD ["npm", "start"]
