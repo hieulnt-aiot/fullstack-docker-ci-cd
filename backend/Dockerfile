@@ -4,7 +4,7 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install --omit=dev && npm install @types/node
 
 COPY prisma ./prisma
 RUN npx prisma generate
