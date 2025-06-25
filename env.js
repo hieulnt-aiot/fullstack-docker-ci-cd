@@ -1,0 +1,3 @@
+window.env = {
+  NEXT_PUBLIC_API_URL: "http://backend:3001",
+};

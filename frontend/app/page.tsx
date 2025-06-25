@@ -7,7 +7,7 @@ import { getAndUpdateCounter } from '@/api/counter';
 export default function HomePage() {
   const [count, setCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+  
   useEffect(() => {
     const fetchCounter = async () => {
       try {
