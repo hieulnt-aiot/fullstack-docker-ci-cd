@@ -11,6 +11,9 @@ RUN npm ci
 # Copy source
 COPY . .
 
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 # Build (tự tạo /out nếu có output: 'export')
 RUN npm run build
 
