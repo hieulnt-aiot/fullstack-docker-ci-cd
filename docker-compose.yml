@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   frontend:
     image: tronghieu888/my-fullstack-frontend:latest
@@ -6,8 +6,8 @@ services:
       - "3000:80"
     depends_on:
       - backend
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend:3001
+    args:
+      NEXT_PUBLIC_API_URL: http://backend:3001
 
   backend:
     image: tronghieu888/my-fullstack-backend:latest
