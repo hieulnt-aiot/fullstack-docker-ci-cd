@@ -17,6 +17,7 @@ RUN npm run build
 FROM nginx:alpine
 
 COPY --from=builder /pages/out /usr/share/nginx/html
+RUN echo "📁 Show output folder:" && ls -la && ls -la ./pages/out
 
 # Optional: custom nginx.conf (nếu SEO/routing)
 # COPY nginx.conf /etc/nginx/nginx.conf
