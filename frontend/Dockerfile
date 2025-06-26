@@ -13,6 +13,7 @@ RUN npm run build
 
 # Stage 2: Serve
 FROM nginx:alpine
-COPY --from=builder /app/out /usr/share/nginx/html
+COPY --from=builder /app /usr/share/nginx/html
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
