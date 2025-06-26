@@ -3,11 +3,23 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 COPY package*.json ./
-# COPY tailwind.config.js postcss.config.mjs next.config.ts ./
 RUN npm ci
 COPY . .
 
-RUN npm run build
+# Inject runtime env (nếu cần)
+ARG NEXT_PUBLIC_API_URL
+RUN echo "window.env = { NEXT_PUBLIC_API_URL: '$NEXT_PUBLIC_API_URL' };" > ./public/env.js
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# Generate static site
+RUN npm run build && npm run export
+
+# Stage 2: Serve with nginx
+FROM nginx:alpine
+
+COPY --from=builder /app/out /usr/share/nginx/html
+
+# Optional: custom nginx.conf (nếu SEO/routing)
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
