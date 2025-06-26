@@ -1,7 +1,7 @@
 'use client';
 
-import { createNote, updateNote } from '@/pages/api/notes';
-import { Note } from '@/pages/api/notes/types';
+import { createNote, updateNote } from '@/api/notes';
+import { Note } from '@/api/notes/types';
 import { useState, useEffect } from 'react';
 
 interface NoteFormProps {

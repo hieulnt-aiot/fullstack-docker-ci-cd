@@ -3,23 +3,23 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install --omit=dev && npm install @types/node
+COPY package*.json tsconfig.json ./
 
-# COPY prisma ./prisma
-# RUN npx prisma generate
+RUN npm ci
 
 COPY . .
+
 RUN npm run build
 
 # Stage 2: Run
-FROM node:18-alpine
+FROM node:18-alpine AS production
 
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 
+RUN npm install --omit=dev
+
 EXPOSE 3001
-CMD ["node", "dist/main"]
+CMD ["node", "dist/index.js"]

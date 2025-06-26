@@ -1,25 +1,19 @@
-# Stage 1: Build
 FROM node:18-alpine AS builder
 
-WORKDIR /pages
+WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 
-# Inject runtime env (nếu cần)
-ARG NEXT_PUBLIC_API_URL
-RUN echo "window.env = { NEXT_PUBLIC_API_URL: '$NEXT_PUBLIC_API_URL' };" > ./public/env.js
-
-# Generate static site
 RUN npm run build
 
-# Stage 2: Serve with nginx
-FROM nginx:alpine
+FROM node:18-alpine AS runner
 
-COPY --from=builder /pages/out /usr/share/nginx/html
+WORKDIR /app
 
-# Optional: custom nginx.conf (nếu SEO/routing)
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./pulic
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+CMD ["node", "server.js"]

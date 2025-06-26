@@ -1,6 +1,6 @@
 'use client';
 
-import { RedisEntry } from '@/pages/api/redis/types';
+import { RedisEntry } from '@/api/redis/types';
 import { useState } from 'react';
 
 interface Props {

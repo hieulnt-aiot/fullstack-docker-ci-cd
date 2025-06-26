@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getAndUpdateCounter } from './api/counter';
+import { getAndUpdateCounter } from '@/api/counter';
 
 export default function HomePage() {
   const [count, setCount] = useState<number | null>(null);

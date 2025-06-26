@@ -1,6 +1,6 @@
 'use client';
 
-import { Note } from '@/pages/api/notes/types';
+import { Note } from '@/api/notes/types';
 
 interface NoteListProps {
   notes: Note[];
