@@ -12,16 +12,19 @@ jobs:
       - name: 🧾 Checkout code
         uses: actions/checkout@v3
 
-      - name: ⚙️ Generate environment file
+      - name: Generate .env file for backend
         run: |
-          echo "DATABASE_URL=mysql://root:${{ secrets.MYSQL_PASSWORD }}@db:3306/fullstack-docker-app" > .env
-          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
-          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
-          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env
-          echo "PORT=3001" >> .env.production
+          echo "DATABASE_URL=mysql://root:admin123@db:3306/fullstack-docker-app" > backend/.env
+          echo "REDIS_HOST=redis" >> backend/.env
+          echo "REDIS_PORT=6379" >> backend/.env
+          echo "PORT=3001" >> backend/.env
 
       - name: 🛠️ Build backend image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-fullstack-backend:latest ./backend
+
+      - name: Generate .env file for frontend
+        run: |
+          echo "NEXT_PUBLIC_API_URL=http://localhost:3001" > frontend/.env.local
 
       - name: 🛠️ Build frontend image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-fullstack-frontend:latest ./frontend
