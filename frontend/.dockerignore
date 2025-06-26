@@ -5,3 +5,4 @@ out
 .env*
 Dockerfile
 .dockerignore
+.env.frontend

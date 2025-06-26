@@ -5,3 +5,4 @@ dist
 Dockerfile
 .dockerignore
 *.spec.ts
+.env.backend

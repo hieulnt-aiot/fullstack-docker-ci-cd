@@ -1,19 +1,19 @@
 version: "3.8"
 services:
   frontend:
-    image: tronghieu888/my-fullstack-frontend:latest
+    image: "${DOCKERHUB_USERNAME}/my-fullstack-frontend:latest"
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: http://backend:3001
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
     ports:
       - "3000:80"
     depends_on:
       - backend
 
   backend:
-    image: tronghieu888/my-fullstack-backend:latest
+    image: "${DOCKERHUB_USERNAME}/my-fullstack-backend:latest"
     ports:
       - "3001:3001"
     depends_on:
@@ -22,16 +22,16 @@ services:
       redis:
         condition: service_started
     environment:
-      - DATABASE_URL=mysql://root:admin123@db:3306/fullstack-docker-app
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - DATABASE_URL=mysql://root:${MYSQL_PASSWORD}@db:3306/fullstack-docker-app
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
       - PORT=3001
 
   db:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: fullstack-docker-app
     ports:
       - "3307:3306"
