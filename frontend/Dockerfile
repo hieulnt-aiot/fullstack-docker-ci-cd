@@ -7,8 +7,6 @@ COPY tailwind.config.js postcss.config.mjs next.config.ts ./
 RUN npm ci
 COPY . .
 
-ARG NEXT_PUBLIC_API_URL
-RUN echo "window.env = { NEXT_PUBLIC_API_URL: '$NEXT_PUBLIC_API_URL' };" > ./public/env.js
 RUN npm run build
 
 # Stage 2: Serve
