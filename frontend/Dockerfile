@@ -16,8 +16,6 @@ RUN npm run build
 # Stage 2: Serve with nginx
 FROM nginx:alpine
 
-COPY --from=builder /app/out /usr/share/nginx/html
-
 # Optional: custom nginx.conf (nếu SEO/routing)
 # COPY nginx.conf /etc/nginx/nginx.conf
 
