@@ -1,8 +1,8 @@
 'use client';
 
+import { createNote, updateNote } from '@/pages/api/notes';
+import { Note } from '@/pages/api/notes/types';
 import { useState, useEffect } from 'react';
-import { createNote, updateNote } from '@/api/notes';
-import { Note } from '@/api/notes/types';
 
 interface NoteFormProps {
   onSaved: () => void;

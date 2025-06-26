@@ -1,6 +1,6 @@
 'use client';
 
-import { createNote, deleteNote, getAllNotes, updateNote } from '@/api/notes';
+import { createNote, deleteNote, getAllNotes } from '@/pages/api/notes';
 import { useEffect, useState } from 'react';
 
 type Note = {
@@ -20,7 +20,7 @@ export default function NotesPage() {
   };
 
   const handleAdd = async () => {
-    await createNote({title, content});
+    await createNote({ title, content });
     setTitle('');
     setContent('');
     fetchNotes();

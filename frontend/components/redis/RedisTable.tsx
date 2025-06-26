@@ -1,6 +1,6 @@
 'use client';
 
-import { RedisEntry } from "@/api/redis/types";
+import { RedisEntry } from '@/pages/api/redis/types';
 
 interface Props {
   data: RedisEntry[];

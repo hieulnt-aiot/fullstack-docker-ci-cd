@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { RedisEntry } from '@/api/redis/types';
-import { deleteRedisKey, getAllRedisKeys, setRedisKey } from '@/api/redis';
 import RedisForm from '@/components/redis/RedisForm';
 import RedisTable from '@/components/redis/RedisTable';
+import { RedisEntry } from '../api/redis/types';
+import { deleteRedisKey, getAllRedisKeys, setRedisKey } from '../api/redis';
 
 export default function RedisPage() {
   const [entries, setEntries] = useState<RedisEntry[]>([]);
