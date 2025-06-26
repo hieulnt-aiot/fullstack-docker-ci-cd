@@ -4,6 +4,7 @@ import path from 'path';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: 'export',
   webpack: config => {
     config.resolve.alias['@'] = path.resolve(__dirname);
     return config;
