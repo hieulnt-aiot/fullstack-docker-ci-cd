@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getAndUpdateCounter } from '@/api/counter';
+import instance from '@/lib/axios';
 
 export default function HomePage() {
   const [count, setCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  
+
+  console.log('instance:' + instance.getUri);
   useEffect(() => {
     const fetchCounter = async () => {
       try {
