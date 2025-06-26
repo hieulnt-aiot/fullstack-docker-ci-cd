@@ -11,7 +11,7 @@ ARG NEXT_PUBLIC_API_URL
 RUN echo "window.env = { NEXT_PUBLIC_API_URL: '$NEXT_PUBLIC_API_URL' };" > ./public/env.js
 
 # Generate static site
-RUN npm run build && npm run export
+RUN npm run build
 
 # Stage 2: Serve with nginx
 FROM nginx:alpine
