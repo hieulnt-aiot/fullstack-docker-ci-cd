@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY package*.json tsconfig.json ./
 
+RUN npx prisma generate --schema=prisma/schema.prisma
 RUN npm ci
 
 COPY . .
