@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   nginx:
     image: nginx:alpine
@@ -23,6 +22,11 @@ services:
     image: tronghieu888/my-fullstack-backend:latest
     ports:
       - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
     environment:
       - DATABASE_URL=mysql://root:admin123@db:3306/fullstack-docker-app
       - REDIS_HOST=redis
@@ -31,6 +35,7 @@ services:
 
   db:
     image: mysql:8.0
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin123
       MYSQL_DATABASE: fullstack-docker-app
@@ -38,6 +43,11 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   redis:
     image: redis:alpine

@@ -243,3 +243,79 @@
 [2025-06-26 01:33:52Z ERR  BrokerServer] System.Net.Sockets.SocketException (89): Operation canceled
 [2025-06-26 01:33:52Z WARN BrokerServer] Back off 14.074 seconds before next retry. 4 attempt left.
 [2025-06-26 01:33:52Z INFO BrokerMessageListener] Get messages has been cancelled using local token source. Continue to get messages with new status.
+[2025-06-26 01:57:06Z INFO ConfigurationStore] HasCredentials()
+[2025-06-26 01:57:06Z INFO ConfigurationStore] stored True
+[2025-06-26 01:57:06Z INFO CredentialManager] GetCredentialProvider
+[2025-06-26 01:57:06Z INFO CredentialManager] Creating type OAuth
+[2025-06-26 01:57:06Z INFO CredentialManager] Creating credential type: OAuth
+[2025-06-26 01:57:06Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials_rsaparams
+[2025-06-26 01:57:06Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials_rsaparams
+[2025-06-26 01:57:06Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/admin/Desktop/fullstack-docker-app-cicd/actions-runner/.credentials_rsaparams
+[2025-06-26 01:57:06Z INFO Terminal] WRITE LINE: Exiting...
+[2025-06-26 01:57:06Z INFO ConfigurationStore] IsServiceConfigured()
+[2025-06-26 01:57:06Z INFO ConfigurationStore] IsServiceConfigured: False
+[2025-06-26 01:57:06Z INFO HostContext] Runner will be shutdown for UserCancelled
+[2025-06-26 01:57:06Z WARN GitHubActionsService] POST request to https://run-actions-3-azure-eastus.actions.githubusercontent.com/88/acquirejob has been cancelled.
+[2025-06-26 01:57:06Z ERR  RunServer] Catch exception during request
+[2025-06-26 01:57:06Z ERR  RunServer] System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at GitHub.Services.Common.VssHttpRetryMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at GitHub.Services.OAuth.VssOAuthTokenHttpClient.GetTokenAsync(VssOAuthGrant grant, VssOAuthClientCredential credential, VssOAuthTokenParameters tokenParameters, CancellationToken cancellationToken)
+   at GitHub.Services.OAuth.VssOAuthTokenProvider.OnGetTokenAsync(IssuedToken failedToken, CancellationToken cancellationToken)
+   at GitHub.Services.Common.IssuedTokenProvider.GetTokenOperation.GetTokenAsync(VssTraceActivity traceActivity)
+   at GitHub.Services.Common.IssuedTokenProvider.GetTokenAsync(IssuedToken failedToken, CancellationToken cancellationToken)
+   at GitHub.Services.Common.RawHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at GitHub.Services.Common.VssHttpRetryMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Sdk.WebApi.WebApi.RawHttpClientBase.SendAsync(HttpRequestMessage message, HttpCompletionOption completionOption, Object userState, CancellationToken cancellationToken)
+   at Sdk.WebApi.WebApi.RawHttpClientBase.SendAsync[T](HttpRequestMessage message, Boolean readErrorBody, Object userState, CancellationToken cancellationToken)
+   at Sdk.WebApi.WebApi.RawHttpClientBase.SendAsync[T](HttpMethod method, IEnumerable`1 additionalHeaders, Uri requestUri, HttpContent content, IEnumerable`1 queryParameters, Boolean readErrorBody, Object userState, CancellationToken cancellationToken)
+   at GitHub.Actions.RunService.WebApi.RunServiceHttpClient.GetJobMessageAsync(Uri requestUri, String messageId, String runnerOS, String billingOwnerId, CancellationToken cancellationToken)
+   at GitHub.Runner.Common.RunServer.<>c__DisplayClass6_0.<<GetJobMessageAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at GitHub.Runner.Common.RunnerService.RetryRequest[T](Func`1 func, CancellationToken cancellationToken, Int32 maxRetryAttemptsCount, Func`2 shouldRetry)
+[2025-06-26 01:57:06Z ERR  RunServer] #####################################################
+[2025-06-26 01:57:06Z ERR  RunServer] System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at GitHub.Services.Common.VssHttpRetryMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at GitHub.Services.OAuth.VssOAuthTokenHttpClient.GetTokenAsync(VssOAuthGrant grant, VssOAuthClientCredential credential, VssOAuthTokenParameters tokenParameters, CancellationToken cancellationToken)
+   at GitHub.Services.OAuth.VssOAuthTokenProvider.OnGetTokenAsync(IssuedToken failedToken, CancellationToken cancellationToken)
+   at GitHub.Services.Common.IssuedTokenProvider.GetTokenOperation.GetTokenAsync(VssTraceActivity traceActivity)
+   at GitHub.Services.Common.IssuedTokenProvider.GetTokenAsync(IssuedToken failedToken, CancellationToken cancellationToken)
+   at GitHub.Services.Common.RawHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at GitHub.Services.Common.VssHttpRetryMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+[2025-06-26 01:57:06Z ERR  RunServer] #####################################################
+[2025-06-26 01:57:06Z ERR  RunServer] System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at GitHub.Services.Common.VssHttpRetryMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+[2025-06-26 01:57:06Z WARN RunServer] Back off 8.405 seconds before next retry. 4 attempt left.
+[2025-06-26 01:57:06Z ERR  Runner] Caught exception from acquiring job message: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at GitHub.Runner.Common.RunnerService.RetryRequest[T](Func`1 func, CancellationToken cancellationToken, Int32 maxRetryAttemptsCount, Func`2 shouldRetry)
+   at GitHub.Runner.Listener.Runner.RunAsync(RunnerSettings settings, Boolean runOnce)
+[2025-06-26 01:57:06Z INFO JobDispatcher] Shutting down JobDispatcher. Make sure all WorkerDispatcher has finished.
+[2025-06-26 01:57:06Z INFO JobDispatcher] Ensure WorkerDispatcher for job 3d0c0680-6e76-51fd-bc9a-8780bad2ab87 run to finish, cancel any running job.
+[2025-06-26 01:57:06Z INFO JobDispatcher] Job request 3d0c0680-6e76-51fd-bc9a-8780bad2ab87 processed succeed.
+[2025-06-26 01:57:06Z INFO Runner] Deleting Runner Session...
+[2025-06-26 01:57:07Z INFO Listener] Runner execution has finished with return code 0
