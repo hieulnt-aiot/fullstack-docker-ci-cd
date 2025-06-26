@@ -14,10 +14,10 @@ jobs:
 
       - name: ⚙️ Generate environment file
         run: |
-          echo "DATABASE_URL=mysql://root:${{ secrets.MYSQL_PASSWORD }}@db:3306/fullstack-docker-app" > .env.production
-          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.production
-          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env.production
-          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env.production
+          echo "DATABASE_URL=mysql://root:${{ secrets.MYSQL_PASSWORD }}@db:3306/fullstack-docker-app" > .env
+          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env
           echo "PORT=3001" >> .env.production
 
       - name: 🛠️ Build backend image
