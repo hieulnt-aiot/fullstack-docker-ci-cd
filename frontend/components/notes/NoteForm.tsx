@@ -1,44 +1,22 @@
 'use client';
 
-import { createNote, updateNote } from '@/api/notes';
-import { Note } from '@/api/notes/types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { createNote } from '@/api/notes';
 
 interface NoteFormProps {
-  onSaved: () => void;
-  editingNote?: Note | null;
-  cancelEdit: () => void;
+  onCreated: () => void;
 }
 
-export default function NoteForm({
-  onSaved,
-  editingNote,
-  cancelEdit,
-}: NoteFormProps) {
+export default function NoteForm({ onCreated }: NoteFormProps) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  useEffect(() => {
-    if (editingNote) {
-      setTitle(editingNote.title);
-      setContent(editingNote.content);
-    } else {
-      setTitle('');
-      setContent('');
-    }
-  }, [editingNote]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingNote) {
-      await updateNote(editingNote.id, { title, content });
-    } else {
-      await createNote({ title, content });
-    }
+    await createNote({ title, content });
     setTitle('');
     setContent('');
-    onSaved();
-    cancelEdit();
+    onCreated();
   };
 
   return (
@@ -58,23 +36,12 @@ export default function NoteForm({
         onChange={e => setContent(e.target.value)}
         required
       />
-      <div className="flex space-x-2">
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          {editingNote ? 'Cập nhật' : 'Thêm mới'}
-        </button>
-        {editingNote && (
-          <button
-            type="button"
-            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400 transition"
-            onClick={cancelEdit}
-          >
-            Huỷ
-          </button>
-        )}
-      </div>
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+      >
+        Thêm ghi chú
+      </button>
     </form>
   );
 }
