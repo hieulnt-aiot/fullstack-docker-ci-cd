@@ -2,12 +2,14 @@ version: "3.8"
 services:
   frontend:
     image: tronghieu888/my-fullstack-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://backend:3001
     ports:
       - "3000:80"
-    depends_on:
       - backend
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend:3001
 
   backend:
     image: tronghieu888/my-fullstack-backend:latest
